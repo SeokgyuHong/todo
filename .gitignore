@@ -105,6 +105,12 @@ obj/
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
+# Sonarlint plugin
+.idea/**/sonarlint/
+
+# SonarQube Plugin
+.idea/**/sonarIssues.xml
+
 # Package Files #
 *.war
 *.ear
