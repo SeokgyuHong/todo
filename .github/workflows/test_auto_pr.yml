@@ -19,4 +19,17 @@ jobs:
           ref: 'main'
       - name: Echo Test
         run: echo "$CommonString $LwString"
+        
+        
+      # base 브랜치와 TITLE이 같은 PR이 있는지 체크
+      
+      # 똑같은 Project의 PR이라면 PR 삭제, 브랜치 제거
+      
+      # 아니라면 해당 PR로 체크아웃 
+      
+      
+      # 리비전 다운로드 및 다국어 적용
+      
+      
+      # 푸시 
   
