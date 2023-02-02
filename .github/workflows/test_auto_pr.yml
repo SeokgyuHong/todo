@@ -1,0 +1,18 @@
+name: Test Auto Pr
+
+on:
+  repository_dispatch:
+    types: [test]
+
+jobs:
+  webhook_test:
+    runs-on: ubuntu-latest
+    
+    steps:
+      # feature 브랜치 체크아웃
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          ref: 'feature/ci/auto_pr_test'
+        
+  
