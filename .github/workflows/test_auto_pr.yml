@@ -6,6 +6,9 @@ on:
 
 jobs:
   webhook_test:
+    env:
+      CommonString: Common Rivision
+      LwString: Lw Rivision
     runs-on: ubuntu-latest
     
     steps:
@@ -14,5 +17,6 @@ jobs:
         uses: actions/checkout@v3
         with:
           ref: 'main'
-        
+      - name: Echo Test
+        run: echo "$CommonString $LwString"
   
