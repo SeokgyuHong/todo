@@ -13,6 +13,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         with:
-          ref: 'feature/ci/auto_pr_test'
+          ref: 'main'
         
   
