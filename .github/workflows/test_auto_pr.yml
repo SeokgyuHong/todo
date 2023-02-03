@@ -19,6 +19,9 @@ jobs:
           ref: 'main'
       - name: Echo Test
         run: echo "$CommonString $LwString"
+        run: echo "$(gh auth status)"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         
         
       # base 브랜치와 TITLE이 같은 PR이 있는지 체크
