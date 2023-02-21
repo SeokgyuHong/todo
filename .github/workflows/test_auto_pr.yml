@@ -20,6 +20,9 @@ jobs:
           
       - name: echoTest
         run: |
+          echo ${{ github.event.client_payload }}
+          test=${{ github.event.client_payload }}
+          echo "test = $test"
           read CUR_PROJECT_ID CUR_BRANCH_ID CUR_PROJECT_REVISION URL < <(echo $( ${{ github.event.client_payload }} | jq '. | {projectId: .projectId,branchId: .branchId, revision: .revision, url: .exportFileList[]|select(.exportType == "ANDROID")|.url }' | jq -r '.projectId, .branchId, .revision, .url'))
           echo $CUR_PROJECT_ID
           echo $CUR_PROJECT_REVISION
