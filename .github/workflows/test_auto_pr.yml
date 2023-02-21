@@ -7,11 +7,11 @@ on:
 jobs:
   webhook_test:
     runs-on: ubuntu-latest
+    env:
+      DATA: ${{ github.event.client_payload }}
+      USER: ${{ github.event.client_payload.releaseUser }}
     
     steps:
-      - env:
-          DATA: ${{ github.event.client_payload }}
-          USER: ${{ github.event.client_payload.releaseUser }}
       - name: setup
         run: |
           if ! command -v jq > /dev/null 2>&1
@@ -23,8 +23,8 @@ jobs:
           
       - name: echoTest
         run: |
-          echo $DATA
-          echo $USER
+          echo ${{ env.DATA }}
+          echo ${{ env.USER }}
           
           echo "test = $test"
           read CUR_PROJECT_ID CUR_BRANCH_ID CUR_PROJECT_REVISION URL < <(echo $( ${{ github.event.client_payload }} | jq '. | {projectId: .projectId,branchId: .branchId, revision: .revision, url: .exportFileList[]|select(.exportType == "ANDROID")|.url }' | jq -r '.projectId, .branchId, .revision, .url'))
