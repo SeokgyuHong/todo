@@ -9,19 +9,23 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
+      - env:
+          DATA: ${{ github.event.client_payload }}
+          USER: ${{ github.event.client_payload.releaseUser }}
       - name: setup
         run: |
           if ! command -v jq > /dev/null 2>&1
           then
           sudo apt update
           sudo apt install -y jq
-          jq --version
           fi
+          jq --version
           
       - name: echoTest
         run: |
-          echo ${{ github.event.client_payload }}
-          test=${{ github.event.client_payload }}
+          echo $DATA
+          echo $USER
+          
           echo "test = $test"
           read CUR_PROJECT_ID CUR_BRANCH_ID CUR_PROJECT_REVISION URL < <(echo $( ${{ github.event.client_payload }} | jq '. | {projectId: .projectId,branchId: .branchId, revision: .revision, url: .exportFileList[]|select(.exportType == "ANDROID")|.url }' | jq -r '.projectId, .branchId, .revision, .url'))
           echo $CUR_PROJECT_ID
