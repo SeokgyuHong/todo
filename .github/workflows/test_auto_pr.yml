@@ -26,7 +26,7 @@ jobs:
           echo "CUR_PROJECT_ID = $CUR_PROJECT_ID"
           echo "CUR_BRANCH_ID = $CUR_PROJECT_REVISION"
           echo "url = $URL"
-          echo $pay_load | jq '. | {projectId: .projectId, branchId: .branchId, revision: .revision, url: .exportFileList[]|select(.exportType == "ANDROID")|.url }' | jq -r '.projectId, .branchId, .revision, .url'
+          echo $( $pay_load | jq '. | {projectId: .projectId, branchId: .branchId, revision: .revision, url: .exportFileList[]|select(.exportType == "ANDROID")|.url }' | jq -r '.projectId, .branchId, .revision, .url')
         
       
   
