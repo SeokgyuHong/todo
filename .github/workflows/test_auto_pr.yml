@@ -19,12 +19,10 @@ jobs:
           
       - name: echoTest
         run: |
-          pay_load=${{ toJson(github.event.client_payload) }}
+          pay_load='${{ toJson(github.event.client_payload) }}'
+
           
-          echo "pay_load = $pay_load"
-          echo "pay_load = '$pay_load'"
-          
-          echo '$pay_load' | jq ' .projectId, .branchId, .revision, (.exportFileList[] | select(.exportType == "ANDROID").url)'
+          echo $pay_load | jq ' .projectId, .branchId, .revision, (.exportFileList[] | select(.exportType == "ANDROID").url)'
 
           #read CUR_PROJECT_ID CUR_BRANCH_ID CUR_PROJECT_REVISION URL < <(echo $( $pay_load | jq '. | {projectId: .projectId, branchId: .branchId, revision: .revision, url: .exportFileList[]|select(.exportType == "ANDROID")|.url }' | jq -r '.projectId, .branchId, .revision, .url'))
           
