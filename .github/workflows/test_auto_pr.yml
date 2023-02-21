@@ -21,9 +21,10 @@ jobs:
         run: |
 
           read CUR_PROJECT_ID CUR_BRANCH_ID CUR_PROJECT_REVISION URL < <(echo '${{ toJson(github.event.client_payload) }}' | jq '. | {projectId: .projectId, branchId: .branchId, revision: .revision, url: .exportFileList[]|select(.exportType == "ANDROID")|.url }' | jq -r '.projectId, .branchId, .revision, .url')
-          echo $CUR_PROJECT_ID
-          echo $CUR_PROJECT_REVISION
-          echo $URL
+          
+          echo "CUR_PROJECT_ID = $CUR_PROJECT_ID"
+          echo "CUR_BRANCH_ID = $CUR_PROJECT_REVISION"
+          echo "url = $URL"
         
       
   
