@@ -8,7 +8,6 @@ jobs:
   webhook_test:
     runs-on: ubuntu-latest
     env:
-      DATA: ${{ github.event.client_payload }}
       USER: ${{ github.event.client_payload.releaseUser }}
     
     steps:
@@ -23,7 +22,6 @@ jobs:
           
       - name: echoTest
         run: |
-          echo ${{ env.DATA }}
           echo ${{ env.USER }}
           
           echo "test = $test"
