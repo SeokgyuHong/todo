@@ -22,9 +22,9 @@ jobs:
           pay_load='${{ toJson(github.event.client_payload) }}'
 
           
-          read CUR_PROJECT_ID CUR_BRANCH_ID CUR_PROJECT_REVISION URL < <(echo $pay_load | jq ' .projectId, .branchId, .revision, (.exportFileList[] | select(.exportType == "ANDROID").url)')
+          #read CUR_PROJECT_ID CUR_BRANCH_ID CUR_PROJECT_REVISION URL < <(echo $pay_load | jq ' .projectId, .branchId, .revision, (.exportFileList[] | select(.exportType == "ANDROID").url)')
 
-          #read CUR_PROJECT_ID CUR_BRANCH_ID CUR_PROJECT_REVISION URL < <(echo $( $pay_load | jq '. | {projectId: .projectId, branchId: .branchId, revision: .revision, url: .exportFileList[]|select(.exportType == "ANDROID")|.url }' | jq -r '.projectId, .branchId, .revision, .url'))
+          read CUR_PROJECT_ID CUR_BRANCH_ID CUR_PROJECT_REVISION URL < <(echo $( $pay_load | jq '. | {projectId: .projectId,branchId: .branchId, revision: .revision, url: .exportFileList[]|select(.exportType == "ANDROID")|.url }' | jq -r '.projectId, .branchId, .revision, .url'))
           
           echo "CUR_PROJECT_ID = $CUR_PROJECT_ID"
           echo "CUR_BRANCH_ID = $CUR_BRANCH_ID"
